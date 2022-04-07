@@ -3,7 +3,7 @@ Milestone 1:
 Contributions until now:
 
 Vijay Ram Giduturi - Grammar, GitHub
-Nikhil Alapati - Grammar, Design
+Nikhil Alapati - Design, Grammar
 Phani Teja Inaganti - Design, Documentation
 Krishna Chandra Sen Dadi - Grammar, Design
 Srikruthi Vedantham - Grammar, Documentation
