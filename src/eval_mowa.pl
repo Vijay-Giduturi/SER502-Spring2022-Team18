@@ -150,3 +150,62 @@ eval_booleanExpr(b_exprLTExpr(B1, B2), Env, V, Env_F) :- eval_expression(B1, Env
 
 eval_booleanExpr(b_exprLTEExpr(B1, B2), Env, V, Env_F) :- eval_expression(B1, Env, V1, Env1), eval_expression(B2, Env1, V2, Env_F), ltOrEqualto(V1, V2, V).
 
+
+
+%All kinds of expressions like addition, multiplication, subtraction, division, string concatenation are evaluated
+
+eval_expression(true, Env, true, Env).
+eval_expression(false, Env, false, Env).
+
+eval_expression(number(N), Env, N, Env).
+eval_expression(string(S), Env, S, Env).
+
+eval_expression(e_addition(S1, S2), Env, V, Env_F) :- eval_expression(S1, Env, V1, Env1), eval_expression(S2, Env1, V2, Env_F), \+string(V1), \+string(V2), V is V1+V2.
+
+eval_expression(e_addition(S1, S2), Env, V, Env_F) :- eval_expression(S1, Env, V1, Env1), eval_expression(S2, Env1, V2, Env_F), \+ string(V1), string(V2), string_concat(V1, V2, V).
+
+eval_expression(e_addition(S1, S2), Env, V, Env_F) :- eval_expression(S1, Env, V1, Env1), eval_expression(S2, Env1, V2, Env_F), string(V1), \+ string(V2), string_concat(V1, V2, V).
+
+eval_expression(e_addition(S1, S2), Env, V, Env_F) :- eval_expression(S1, Env, V1, Env1), eval_expression(S2, Env1, V2, Env_F), string(V1), string(V2), string_concat(V1, V2, V).
+
+eval_expression(e_subtraction(S1, S2), Env, V, Env_F) :- eval_expression(S1, Env, V1, Env1), eval_expression(S2, Env1, V2, Env_F), V is V1-V2.
+
+eval_expression(e_multiplication(S1, S2), Env, V, Env_F) :- eval_expression(S1, Env, V1, Env1), eval_expression(S2, Env1, V2, Env_F), V is V1*V2.
+
+eval_expression(e_division(S1, S2), Env, V, Env_F) :- eval_expression(S1, Env, V1, Env1), eval_expression(S2, Env1, V2, Env_F), V is V1/V2.
+
+eval_expression(i_expression(S), Env, V, Env_F) :- eval_expression(S, Env, V, Env_F).
+
+eval_expression(identifiers(S), Env, V, Env) :- lookup(identifiers(S), Env, V).
+
+eval_expression(identifiers(S), Env, _, Env_New) :- not(lookup(identifiers(S), Env, _)),update(identifiers(S), [], Env, Env_New).  
+
+eval_expression(e_ternaryStmt(I1, I2, I3), Env, V, Env_F):- eval_booleanExpr(I1, Env, true, Env1), eval_expression(I2, Env1, V, Env_F)
+                                                            | eval_booleanExpr(I1, Env, false, Env1), eval_expression(I3, Env1, V, Env_F).
+
+
+% Assignments like a = 5, a =  false, a = b+5 and a++ , a-- are evaluated
+eval_initializeStmt(i_expression(I), Env, V, Env_F) :- eval_expression(I, Env, V, Env_F).
+
+eval_initializeStmt(initialize(I1, I2), Env, V, Env_F) :- eval_initializeStmt(I2, Env, V, Env1), update(I1, V, Env1, Env_F).
+
+eval_initializeStmt(i_unaryStmt(I), Env, V, Env_F) :- eval_unary(I, Env, V, Env_F).
+
+eval_initializeStmt(i_boolean(I1, I2), Env, V, Env_F) :- eval_booleanExpr(I2, Env, V1, Env1), update(I1, V1, Env1, Env_F), V = V1.
+
+    
+%Unary Operator to increment and decrement a value is evaluated below
+
+eval_unary(u_increment(U), Env, V, Env_F) :- lookup(U, Env, V), number(V), V1 is V+1, update(U, V1, Env, Env_F).
+    
+eval_unary(u_decrement(U), Env, V, Env_F) :- lookup(U, Env, V), number(V), V1 is V-1, update(U, V1, Env, Env_F).
+
+
+% to update a value and lookup a specific value, those predicates are validated here
+lookup(Id, [(Id, Val)|_], Val).
+lookup(Id, [_|T], Val) :- lookup(Id, T, Val).
+
+
+update(Id, Val, [], [(Id, Val)]).
+update(Id, Val, [(Id,_)|T], [(Id, Val)|T]).
+update(Id, Val, [H|T], [H|Env_New]) :- H \= (Id, _), update(Id, Val, T, Env_New).
