@@ -1,0 +1,9 @@
+#Author : Vijay Ram Giduturi
+show("--------------------------------")@
+show("Tester of For Range loop ")@
+
+show("here the range of x is from 1 to 10")@
+for x in range(1, 10){
+    i = x-0@
+    show("the value of x in iteration " + i + " is "+x)@   
+}
