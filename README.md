@@ -1,8 +1,7 @@
-################################################
-#README for Team18 - 502_Spring2022
-################################################
 
-# youtube link of our project
+# README for Team18 - 502_Spring2022
+
+
 Youtube Link : 
 
 #The README file is related to MacOS#
