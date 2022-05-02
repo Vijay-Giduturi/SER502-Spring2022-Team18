@@ -1,0 +1,59 @@
+#Author : Vijay Ram Giduturi
+show("-------------------------")@
+show("If Else Condition Tester")@
+a = 10@
+show("the value of a is "+a)@
+if(a == 10){
+    	show("since the value of a is either 10 or 5, IF condition satisfied")@
+}
+
+show("--------------------")@
+show("Not operator tester")@
+b = 5@
+c = 20@
+show("the value of b and c are "+b+ " and "+c)@
+if(b ~= c){
+    show("Yes, b and c are not equal")@
+}
+else{
+    show("b and c are both equal")@
+}
+
+show("-------------------------")@
+show("nested if else tester")@
+
+x = 8@
+show("the value of x is "+x)@
+if(x == 1)
+{
+	show("if statement satisfied")@
+}
+
+elseIf(x == 2)
+{
+	show("else if condition with x value 2 satisfied")@
+}
+
+elseIf(x == 8)
+{
+	show("else if condition with x value 8 satisfied")@
+}
+
+else
+{
+	show("none of the conditions satisfied")@
+}
+
+
+show("-----------------------")@
+show("Ternary Operator Tester")@
+
+x=7@
+z = (7 == x ? true : false)@
+show("since the value of x is 7, the condition is satisfied and the value of z is "+ z)@
+
+a=3@
+f = (3 == a ? 333 : 222)@
+show("the value of a is "+a)@
+show("The value of f for ternary operation f = (3 == a ? 333 : 222) is "+f)@
+
