@@ -1,0 +1,23 @@
+#Author : Phani Teja Inaganti
+show("------------------------------------")@
+show("Tester for Boolean")@
+show("checking all the true and false cases")@
+
+condition = true or true@
+show("true or true is "+ condition)@
+
+condition = true or false@
+show("true or false is  " + condition)@
+
+condition = false or false@
+show("false or false is  " + condition)@
+
+condition = true ^ true@
+show("true ^ true is  " + condition)@
+
+condition = true ^ false@
+show("true ^ false is  " + condition)@
+
+condition = false ^ false@
+show("false ^ false is "+ condition)@
+
