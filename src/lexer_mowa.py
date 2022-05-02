@@ -1,4 +1,4 @@
-#Author : Phani Teja Inaganti
+#Author : Vijay Ram Giduturi, Phani Teja Inaganti
 
 import sys
 #pyswip is the connection between prolog and python
@@ -111,3 +111,38 @@ class mowaLexer(Lexer):
     def BRACKETS(self,b):
         b.value = "'"+b.value+"'"
         return b
+
+
+        
+################################################################
+# Main Functionality.
+################################################################
+
+#taking the path of the code file
+file_path = sys.argv[1]
+
+#taking the extension of the code file to validate
+file_type = file_path[-5:]
+# Checking if the file has correct extension
+
+if file_type == ".mowa":
+    #calling the mowaLezer class
+    lex = mowaLexer()
+    prolog_connect = Prolog()
+    #connecting with the two prolog files that are present in the same project src folder
+    prolog_connect.consult('parser_mowa.pl')
+    prolog_connect.consult('eval_mowa.pl')
+    try:
+        with open(file_path, "r") as source_file:
+            code = source_file.read()
+            all_tokens = "[" + ",".join([tok.value for tok in lex.tokenize(code)]) + "]"
+            # If lexical phase is completed successfully pass token list to next stage
+            if not lex.invalid_char:
+                output = list(prolog_connect.query("program(P," + all_tokens + ", []), program_eval(P)"))
+                # Checking Syntax errors
+                if not bool(output) and all_tokens != "[]":
+                    print("Error: Syntax of code might be wrong, please use the supported syntax of mowa")
+    except FileNotFoundError:
+        print("File not found at : ", file_path)
+else:
+    print("extension doesn't match :", file_type)
