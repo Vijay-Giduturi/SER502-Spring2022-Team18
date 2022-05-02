@@ -1,0 +1,27 @@
+#Author : Krishna Chandra Sen Dadi
+show("--------------------------------------------------------")@
+show("Normal While loop tester")@
+show("the while loop runs until the value of n becomes 10 ")@
+n=1@
+while(n<10)
+{
+	show("The value of n is "+n)@
+	n++@
+}
+show("---------------------------------------------------------")@
+show("Nested While loop tester")@
+
+a=5@
+while(a>0)
+{
+	i=6-a@
+	show("in iteration "+i)@
+	b=0@
+	while(b<4)
+	{
+		c=a+b@
+		show("the value of c when a is "+a + " and b is "+b+" is "+c)@
+		b++@
+	}
+	a--@
+}
