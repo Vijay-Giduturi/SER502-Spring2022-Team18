@@ -1,0 +1,8 @@
+% We have done a few changes in the process of our development %
+
+1). We initially wanted to implement the project with the help of java, we faced a lot of version issues and tool issues in the process, since we have a little experience in java compared to python we wanted to chage our technology to python and in that process we achieved some good results, We spoke to professor regarding our change.
+
+2). Since we changed to python, we ignored the "Declaration" functionality in the grammar, although the types Integer, String and boolean were implemented (we can directly initialize them).
+
+3). our show() function directly prints the lines in new lines and we specifically didn't implement any showln().
+4). As a future scope, we want to implement the multiline comments functionality and end of line literal is changed from "\" to "@", because of the issues with inbuilt usage of that literal. 
