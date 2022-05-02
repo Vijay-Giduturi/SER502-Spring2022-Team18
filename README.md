@@ -6,7 +6,7 @@ Youtube Link :
 
 #The README file is related to MacOS#
 
-#Requirements for the project
+# Requirements for the project
 Since we are using python along with prolog for the development of our project, below are the tools and libraries we have used
 
 1). Python is used to implement lexcial analysis
@@ -29,7 +29,8 @@ Since we are using python along with prolog for the development of our project, 
 	Instalaltion : pip3 install sly
 
 
-#Flow of the project
+
+# Execution Flow of the project
 The code that needs to be executed on the implemeted language is first sent to the lexer and done lexcial analysis by creating the list of tokens, then the tokens were passed to the parser to check the grammar and does sematical analysis and then the output of the query (which is the functionality of the code) present in python file is printed on the terminal.
 
 In the terminal,
