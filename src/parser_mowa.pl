@@ -1,5 +1,5 @@
 % ------------- 
-% Authored By : Vijay Ram Giduturi, Nikhil Alapati
+% Authored By : Vijay Ram Giduturi, Nikhil Alapati, Phani Teja Inaganti
 % -------------
 
 :- table booleanExpr/3, expression/3, expr/3.
@@ -108,4 +108,53 @@ booleanExpr(B) -->  [true], { B = (true) } | [false], { B = (false) }  | [~], bo
 
 
 
-% Expression, ids and etc will be implemented by phani 
+% Arithmetic Expressions, string 
+% E ::= E + E | E - E | E * E | E / E | I | N | T
+
+expression(E)--> expression(E1), [+], expr(E2), { E = e_addition(E1,E2) } 
+               | expression(E1), [-], expr(E2), { E = e_subtraction(E1,E2) } | ['('], booleanExpr(E1), ['?'], ternary(E2), [:], ternary(E3), [')'], { E = e_ternaryStmt(E1,E2,E3) } 
+               | expr(E) .
+
+
+expr(E)--> expr(E1) , [*], field(E2), { E = e_multiplication(E1,E2) }
+        | expr(E1) , [/], field(E2), { E = e_division(E1,E2) }
+        | field(E).
+
+field(E) --> id(E) | number(E) | stringExpr(E).
+
+
+
+
+
+% String matching
+% I::= [a-z] Ids | [A-Z] Ids
+% Ids ::= [a-z] | [A-Z] | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | empty
+
+stringExpr(string(S)) --> [S], {string(S)}.
+
+% Identifier matching
+
+id(identifiers(I)) -->[I], { atom(I), identifiers_in_lexer(R), not(member(I,R)) }.
+
+% Reserved identifiers which need to be matched
+
+identifiers_in_lexer([+, -, >, <, =, ^, or, ~, ==, --, ++, <=, >=, if, elseIf, else, for, in, range, while, show, true, false]).
+
+
+
+
+
+% Number matching
+
+% N::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+number(number(N)) --> [N], { number(N) }.
+
+
+
+
+
+% Ternary condition value
+
+ternary(C) --> expression(C) | booleanExpr(C) | stringExpr(C) | id(C) |  number(C).
+
