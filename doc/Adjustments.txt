@@ -6,3 +6,5 @@
 
 3). our show() function directly prints the lines in new lines and we specifically didn't implement any showln().
 4). As a future scope, we want to implement the multiline comments functionality and end of line literal is changed from "\" to "@", because of the issues with inbuilt usage of that literal. 
+
+5). We initially thought of using an arrow for assignment, but later found that it would conflict with predicate declaration in prolog, so we had to stick with = as our assignment operator.
