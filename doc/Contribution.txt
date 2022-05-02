@@ -8,10 +8,10 @@ Phani Teja Inaganti - Design, Documentation
 Krishna Chandra Sen Dadi - Grammar, Design
 Srikruthi Vedantham - Grammar, Documentation
 
-Contribution plan for the final milestone:
+Final Submission:
 
-Vijay Ram Giduturi - Expression parsing, Semantic Analysis
-Nikhil Alapati - Semantic Analysis, Parser
-Phani Teja Inaganti - Lexical Analysis, Expression parsing 
-Krishna Chandra Sen Dadi - Parser, Documentation
-Srikruthi Vedantham - Lexical Analysis, Documentation
+Vijay Ram Giduturi - Parser, Lexical Analysis, text code
+Nikhil Alapati - Semantic Analysis (evaluator), Parser, test code
+Phani Teja Inaganti - Lexical Analysis, parser, test code
+Krishna Chandra Sen Dadi - Semantic Analysis (Evaluator), Documentation, test code
+Srikruthi Vedantham - Semantic Analysis (Evaluator), Documentation, test code
