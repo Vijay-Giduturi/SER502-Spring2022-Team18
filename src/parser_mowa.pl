@@ -1,5 +1,5 @@
 % ------------- 
-% Authored By : Vijay Ram Giduturi
+% Authored By : Vijay Ram Giduturi, Nikhil Alapati
 % -------------
 
 :- table booleanExpr/3, expression/3, expr/3.
@@ -64,4 +64,48 @@ elseIf(C) --> [elseIf], ['('], booleanExpr(C1), [')'], ['{'], block(C2), ['}'], 
 
 
 
-% expressions, loops, booleanexpr, show will be implemented by phani and nikhil 
+
+% Loop statements - Traditional 'for' loop, 'for i in range(x,y)' loop, and a 'while' loop
+% FOR::= for ( IN ; C ; U ) { K } | for I in range ( N , N ) { K }
+% WHILE::= while(C) {K}
+
+loop_for(L) --> forTraditionalLoop(L) | forInRangeLoop(L) .
+
+forTraditionalLoop(L) --> [for], ['('], id(L1), [=], number(L2), [;], booleanExpr(L3), [;], initialize(L4), [')'], ['{'], block(L5), ['}'], { L = l_forTraditional(L1,L2,L3,L4,L5) }. 
+
+forInRangeLoop(L) --> [for], id(L1), [in], [range], ['('], field(L2), [','], field(L3), [')'], ['{'], block(L4), ['}'], { L = l_forInRange(L1,L2,L3,L4) }.
+ 
+loop_while(L) --> [while], ['('], booleanExpr(L1), [')'], ['{'], block(L2), ['}'], { L = l_while(L1,L2) }.
+           
+
+
+
+
+% This is used to show output on the output screen
+% Print::= show(“V”) | show(I)
+
+showStatement(S) -->  expression(S1), { S = s_showStmt(S1) }.
+
+
+
+
+% It includes all boolean operations and conditions based on it.   
+% B ::= true | false | ~ B | B or B | B ^ B   
+% C ::= E < E | E > E | E<= E | E >= E | E == E | E ~= E | B
+% Merged both in the same one(in B)
+
+booleanExpr(B) -->  [true], { B = (true) } | [false], { B = (false) }  | [~], booleanExpr(B1), { B = b_not(B1) } 
+                | expression(B1), [==], expression(B2), { B = b_exprEqualExpr(B1,B2) } 
+                | expression(B1), [==], booleanExpr(B2), { B = b_exprEqualBool(B1,B2) } | booleanExpr(B1), [==], expression(B2), { B = b_boolEqualExpr(B1,B2) } 
+                | expression(B1), [~], [=], booleanExpr(B2), { B = b_exprNotBool(B1,B2) } | booleanExpr(B1), [~], [=], expression(B2), { B = b_boolNotExpr(B1,B2) } | [true], [==], [true], { B=(true) } 
+                | [false], [==], [false], { B = (true) } | [true], [==], [false], { B = (false) } 
+                | [false], [==], [true], { B = (false) } 
+                | expression(B1), [~], [=], expression(B2), { B = b_exprNotExpr(B1,B2) }  
+                | booleanExpr(B1), [^], booleanExpr(B2), { B = b_and(B1,B2) } | expression(B1), [>], expression(B2), { B = b_exprGTExpr(B1,B2) } 
+                | booleanExpr(B1), [or], booleanExpr(B2), { B = b_or(B1,B2) } | expression(B1), [<], expression(B2), { B = b_exprLTExpr(B1,B2) } 
+                | expression(B1) ,[<=], expression(B2), { B = b_exprLTEExpr(B1,B2) } | expression(B1), [>=], expression(B2), { B = b_exprGTEExpr(B1,B2) }.  
+
+
+
+
+% Expression, ids and etc will be implemented by phani 
