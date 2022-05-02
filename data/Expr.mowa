@@ -1,0 +1,49 @@
+#Author: Nikhil Alapati 
+show("----------------------------------------------")@
+show("Tester for numerical Expressions")@
+x=2@
+y=x+6@
+show("The value of x and y are "+x+" and "+y)@
+
+show("-----------------------------------------------")@
+show("Addition tester")@
+z=x+y@
+show("The sum of x and y is "+z)@
+
+show("-----------------------------------------------")@
+show("Subtraction tester")@
+z=y-x@
+show("The subtraction of x from y is "+z)@
+
+show("-----------------------------------------------")@
+show("Multiplication tester")@
+z=x*y@
+show("The multiplication of x and y is "+z)@
+
+show("-----------------------------------------------")@
+show("Division tester")@
+z=y/x@
+show("The division of x and y is "+z)@
+
+show("-----------------------------------------------")@
+show("Unary operator increment tester")@
+p=11@
+show("the value of p is "+p)@
+p++@
+show("p++, The value of p when incremented by 1 is "+p)@
+
+show("-----------------------------------------------")@
+show("Unary operator decrement tester")@
+q=18@
+show("the value of q is "+q)@
+q--@
+show("q--, The value of q when decrement by 1 is "+q)@
+
+
+show("-----------------------------------------------")@
+Show("Tester for String expression")@
+k="sun rises"@
+j="in the east"@
+show("The value of k is "+k)@
+Show("The value of j is "+j)@
+show("The concatenation of the strings is = "+k+" "+j)@
