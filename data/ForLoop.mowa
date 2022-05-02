@@ -1,0 +1,19 @@
+#Author : Srikruthi Vedantham
+show("--------------------------------")@
+show("Tester of Normal For loop ")@
+show("The initial of x is 3 and the loop iterates till x value is less than equal to 10")@
+for(x=3;x<=10;x++)
+{
+    	i=x-2@
+	show("The value of x in iteration "+i+" is :" +x)@
+}
+
+show("---------------------------------")@
+show("Nested for loop tester")@
+for(j=1;j<=4;j++)
+{
+	for(k=1;k<=3;k++)
+	{
+		show("j and k : "+j+" and "+k)@		
+	}
+}
