@@ -35,7 +35,9 @@ The code that needs to be executed on the implemeted language is first sent to t
 
 In the terminal,
 Go to the directory of the src folder having python file.
+
 1). cd "filepath"
 
 then execute the following command by providing the argument as the path to the code file that we want to execute in our language
+
 2). python lexer_mowa.py ../data/<name_codefile>
